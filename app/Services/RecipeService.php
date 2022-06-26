@@ -27,11 +27,14 @@ class RecipeService
                     $calories += $unitCount * $ingredient->calories;
                     $amount += $unitCount * $ingredient->amount;
                     return [
+                        'product_number' => $ingredient->product_number,
                         'name' => $ingredient->name,
                         'unit' => $ingredient->unit,
                         'quantity' => $ingredient->pivot->ingredient_quantity
                     ];
                 }),
+                'user_id' => $info->user->id, 
+                'username' => $info->user->username,
                 'calories' => ceil($calories),
                 'cost' => ceil($amount),
             ];

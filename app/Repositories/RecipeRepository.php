@@ -14,7 +14,7 @@ class RecipeRepository
 
     public function page($limit = 10, $page = 1, $condition = [])
     {
-        $query = $this->model->with(['dishType', 'ingredients']);
+        $query = $this->model->with(['dishType', 'ingredients', 'user']);
 
         if (isset($condition['name'])) {
             $query = $query->where('name', 'like', '%'.$condition['name'].'%');

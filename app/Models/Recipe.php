@@ -30,4 +30,9 @@ class Recipe extends Model
     {
         return $this->hasOne(DishType::class, 'id', 'dish_type_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
