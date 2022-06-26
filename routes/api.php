@@ -17,4 +17,6 @@ Route::post('login', 'AuthUserController@login');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'AuthUserController@logout');
     Route::get('profile', 'AuthUserController@userProfile');
+
+    Route::get('recipe', 'RecipeController@query');
 });

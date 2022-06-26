@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Utils\FormaterTrait;
 
 class AuthUserController extends Controller
 {
-    use FormaterTrait;
-
     public function login(Request $request)
     {
         $credentials = $request->only(['username', 'password']);
