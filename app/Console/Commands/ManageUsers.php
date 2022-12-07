@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Exception;
-use App\Model\User;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class ManageUsers extends Command

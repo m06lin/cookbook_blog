@@ -10,7 +10,7 @@ class AuthUserService
 
     public function __construct(UserRepository $rep)
     {
-        $this->user = auth('api')->user();
+        $this->user = auth('web')->user();
         $this->rep = $rep;
     }
 

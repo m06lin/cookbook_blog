@@ -4,9 +4,13 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
+use App\Utils\FormaterTrait;
 
 class Handler extends ExceptionHandler
 {
+    use FormaterTrait;
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -47,5 +51,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $this->toJsonResponse(401, null, 'Unauthorized', 'Unauthenticated');
     }
 }

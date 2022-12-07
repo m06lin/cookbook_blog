@@ -17,7 +17,7 @@ class AuthUserController extends Controller
     {
         $credentials = $request->only(['username', 'password']);
 
-        if (!$token = auth('api')->attempt($credentials)) {
+        if (!$token = \Auth::guard('web')->attempt($credentials)) {
             return $this->toJsonResponse(401, null, 'Unauthorized', 'login fail');
         }
 
@@ -26,14 +26,14 @@ class AuthUserController extends Controller
 
     public function logout(Request $request)
     {
-        auth('api')->logout();
+        \Auth::guard('web')->logout();
 
         return $this->toJsonResponse(200, null, 'success');
     }
 
-    public function userProfile(Request $request) {
-        $user = auth('api')->user();
-
+    public function userProfile(Request $request)
+    {
+        $user = \Auth::guard('web')->user();
         if ($user) {
             return $this->toJsonResponse(200, $user, 'success');
         }
@@ -49,9 +49,9 @@ class AuthUserController extends Controller
     private function respondWithToken($token)
     {
         return [
-            'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL()
+            'token' => $token,
+            'expires_in' => \Auth::guard('web')->factory()->getTTL() * 60
         ];
     }
 }

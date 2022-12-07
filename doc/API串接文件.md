@@ -20,8 +20,17 @@
     "message": "success"
 }
 ```
-
-
+未登入或Token逾期失效
+```json
+{
+    "code": 401,
+    "payload": null,
+    "message": "Unauthorized",
+    "error": {
+        "message": "Unauthenticated"
+    }
+}
+```
 ## 使用者登錄
 取得API存取使用權限Token，將token加入後續API的Bearer Token中
 
